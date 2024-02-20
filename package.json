@@ -1,0 +1,26 @@
+{
+  "name": "principle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -cw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinqiyan/principle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinqiyan/principle/issues"
+  },
+  "homepage": "https://github.com/kevinqiyan/principle#readme",
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "rollup": "^2.79.1",
+    "rollup-plugin-babel": "^4.4.0"
+  }
+}
