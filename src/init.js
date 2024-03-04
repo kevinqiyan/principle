@@ -1,4 +1,5 @@
-import { observe } from "./obsever/index"
+import { initState } from './state';
+import {compileToFunction} from './compile/index'
 
 // 给 Vue 增加init 方法
 export function initMixin(Vue) {
@@ -8,34 +9,26 @@ export function initMixin(Vue) {
         vm.$options = options
         initState(vm)
     }
-}
-function initState(vm) {
-    const opts = vm.$options
+    Vue.prototype.$mount = function (el) {
+        const vm = this
+        el = document.querySelector(el)
+        let opt = vm.$options
+        
+        if (!opt.render) { // 先进行查找有没有render函数
+            let template; // 没有render查验是否写了template
+            if (!opt.template && el) { // 没有template
+                template = el.outerHTML
+            } else if (el) {
+                template = opt.template
+            }
 
-    if (opts.data) {
-        initData(vm)
-    }
-    
-}
+            if (opt.template) {
+                const render = compileToFunction(opt.template)
+                opt.render = render
+            }
 
-function initData(vm) {
-
-    let data = vm.$options.data
-    data = typeof data === 'function' ? data.call(vm) : data
-    vm._data_ = data
-    observe(data)
-    for (const key in data) {
-        proxy(vm,'_data_',key)
-    }
-}
-
-function proxy(vm,target,key) {
-    Object.defineProperty(vm, key, {
-        get() {
-            return vm[target][key]
-        },
-        set(newValue) {
-            vm[target][key] = newValue
+            console.log('template', template)
         }
-    })
+    }
 }
+
