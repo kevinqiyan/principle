@@ -3,7 +3,6 @@ import { newArrayPrototype } from "./array"
 class Observe {
     constructor(data) {
         if (Array.isArray(data)) {
-            console.log('newArrayPrototype', newArrayPrototype);
             // 这里踩坑了，应该是两个下划线 __
             data.__proto__ = newArrayPrototype
             // this.observeArray(data)

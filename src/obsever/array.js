@@ -14,7 +14,6 @@ const arrMethods = [
 arrMethods.forEach(method => {
     newArrayPrototype[method] = function (...args) {
         const result = oldArrayPrototype[method].call(this, ...args)
-        console.log('method',method)
         return result
     }
 })

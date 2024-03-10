@@ -18,16 +18,17 @@ export function initMixin(Vue) {
             let template; // 没有render查验是否写了template
             if (!opt.template && el) { // 没有template
                 template = el.outerHTML
-            } else if (el) {
-                template = opt.template
+            } else {
+                if (el) {
+                    template = opt.template
+                }
             }
 
-            if (opt.template) {
-                const render = compileToFunction(opt.template)
+            if (template && el) {
+                const render = compileToFunction(template)
                 opt.render = render
             }
 
-            console.log('template', template)
         }
     }
 }
