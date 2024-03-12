@@ -1,5 +1,6 @@
 import { initState } from './state';
-import {compileToFunction} from './compile/index'
+import { compileToFunction } from './compile/index'
+import { mountComponent } from './lifecycle'
 
 // 给 Vue 增加init 方法
 export function initMixin(Vue) {
@@ -30,6 +31,7 @@ export function initMixin(Vue) {
             }
 
         }
+        mountComponent(vm,el)
     }
 }
 
