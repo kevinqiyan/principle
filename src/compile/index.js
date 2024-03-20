@@ -68,6 +68,7 @@ export function compileToFunction(template) {
     let ast = parseHTML(template)
   
     let code = codegen(ast)
+    // render 函数的核心就是 with + Function
     code = `with(this){return ${code}}`;
     let render = new Function(code); // 根据代码生成render函数
     console.log('render',render)

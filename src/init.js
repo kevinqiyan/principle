@@ -12,7 +12,7 @@ export function initMixin(Vue) {
     }
     Vue.prototype.$mount = function (el) {
         const vm = this
-        el = document.querySelector(el)
+        el = document.querySelector(el) // document.querySelector 返回匹配指定选择器的第一个元素
         let opt = vm.$options
         
         if (!opt.render) { // 先进行查找有没有render函数
